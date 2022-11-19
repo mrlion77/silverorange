@@ -103,6 +103,7 @@ You can then access the application on port 8000. The following links can be
 used to test:
 
 - http://localhost:8000 - this will verify the application is running.
+- http://localhost:8000/import - import posts from files into database (Posts table must be truncated before use).
 - http://localhost:8000/checkout - the page to edit for part 1 of the exercise.
 - http://localhost:8000/posts - the posts index page.
 - http://localhost:8000/posts/6ec246b1-ad09-4e03-8573-21e2e779856c - this
