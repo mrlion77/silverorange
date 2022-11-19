@@ -11,4 +11,7 @@ class Config
     public string $dsn = 'mysql:host=localhost:3306;dbname=silverorange';
     public string $username = 'silverorange';
     public string $password = 'silverorange';
+
+    // Import files path
+    public string $postFilesPath = '/var/www/silverorange_warmup/data';
 }

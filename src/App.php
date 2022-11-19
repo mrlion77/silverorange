@@ -40,6 +40,8 @@ class App
         // Switch to set up different context data for different URLs.
         if (preg_match('@^/?$@', $path) === 1) {
             $controller = new Controller\Root($this->db, []);
+        } elseif (preg_match('@^/import/?$@', $path) === 1) {
+            $controller = new Controller\PostImport($this->db, []);
         } elseif (preg_match('@^/posts/?$@', $path) === 1) {
             $controller = new Controller\PostIndex($this->db, []);
         } elseif (preg_match('@^/posts/([a-f0-9-]+)/?$@', $path, $params) === 1) {
