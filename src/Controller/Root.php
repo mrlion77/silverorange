@@ -11,6 +11,7 @@ class Root extends Controller
     {
         $context = new Context();
         $context->title = 'Welcome';
+
         return $context;
     }
 

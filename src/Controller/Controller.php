@@ -19,12 +19,14 @@ abstract class Controller
     public function setDatabase(\PDO $db): self
     {
         $this->db = $db;
+
         return $this;
     }
 
     public function setParams(array $params): self
     {
         $this->params = $params;
+
         return $this;
     }
 

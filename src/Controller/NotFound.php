@@ -12,6 +12,7 @@ class NotFound extends Controller
         $context = new Context();
         $context->title = 'Not Found';
         $context->content = 'Page was not found.';
+
         return $context;
     }
 

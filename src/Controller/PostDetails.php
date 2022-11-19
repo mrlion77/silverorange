@@ -3,12 +3,13 @@
 namespace silverorange\DevTest\Controller;
 
 use silverorange\DevTest\Context;
+use silverorange\DevTest\Model\Post;
+use silverorange\DevTest\Repository\PostRepository;
 use silverorange\DevTest\Template;
-use silverorange\DevTest\Model;
 
 class PostDetails extends Controller
 {
-    private ?Model\Post $post = null;
+    private ?Post $post = null;
 
     public function getContext(): Context
     {
@@ -18,8 +19,9 @@ class PostDetails extends Controller
             $context->title = 'Not Found';
             $context->content = "A post with id {$this->params[0]} was not found.";
         } else {
-            $context->title = $this->post->title;
+            $context->title = $this->post->getTitle();
         }
+        $context->data['post'] = $this->post;
 
         return $context;
     }
@@ -44,7 +46,9 @@ class PostDetails extends Controller
 
     protected function loadData(): void
     {
-        // TODO: Load post from database here. $this->params[0] is the post id.
-        $this->post = null;
+        $post_id = $this->params[0];
+
+        $postRepository = new PostRepository();
+        $this->post = $postRepository->getOneById($post_id);
     }
 }
