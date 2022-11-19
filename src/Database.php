@@ -6,10 +6,14 @@ class Database
 {
     protected ?\PDO $pdo = null;
     protected string $dsn;
+    protected string $username;
+    protected string $password;
 
-    public function __construct(string $dsn)
+    public function __construct(string $dsn, string $username, string $password)
     {
         $this->dsn = $dsn;
+        $this->username = $username;
+        $this->password = $password;
     }
 
     public function setDSN(string $dsn): self
@@ -24,7 +28,11 @@ class Database
     public function getConnection(): \PDO
     {
         if (!$this->pdo instanceof \PDO) {
-            $this->pdo = new \PDO($this->dsn);
+            // Postgresql
+            // $this->pdo = new \PDO($this->dsn);
+
+            // MySQL
+            $this->pdo = new \PDO($this->dsn, $this->username, $this->password);
         }
 
         return $this->pdo;
