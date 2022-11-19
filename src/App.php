@@ -4,13 +4,6 @@ namespace silverorange\DevTest;
 
 class App
 {
-    protected \PDO $db;
-
-    public function __construct(\PDO $db)
-    {
-        $this->db = $db;
-    }
-
     public function run(): bool
     {
         $path = $_SERVER['REQUEST_URI'];
@@ -33,22 +26,22 @@ class App
 
     protected function getController(string $path): Controller\Controller
     {
-        $controller = new Controller\NotFound($this->db, []);
+        $controller = new Controller\NotFound([]);
 
         // TODO: Do stuff like parse query params from $_GET here if required.
 
         // Switch to set up different context data for different URLs.
         if (preg_match('@^/?$@', $path) === 1) {
-            $controller = new Controller\Root($this->db, []);
+            $controller = new Controller\Root([]);
         } elseif (preg_match('@^/import/?$@', $path) === 1) {
-            $controller = new Controller\PostImport($this->db, []);
+            $controller = new Controller\PostImport([]);
         } elseif (preg_match('@^/posts/?$@', $path) === 1) {
-            $controller = new Controller\PostIndex($this->db, []);
+            $controller = new Controller\PostIndex([]);
         } elseif (preg_match('@^/posts/([a-f0-9-]+)/?$@', $path, $params) === 1) {
             array_shift($params);
-            $controller = new Controller\PostDetails($this->db, $params);
+            $controller = new Controller\PostDetails($params);
         } elseif (preg_match('@^/checkout/?$@', $path) === 1) {
-            $controller = new Controller\Checkout($this->db, []);
+            $controller = new Controller\Checkout([]);
         }
 
         return $controller;

@@ -28,7 +28,7 @@ class PostImport extends Controller
         $config = new Config();
         $jsonData = JsonParser::getJsonData($config->postFilesPath);
 
-        $fixturesLoader = new FixturesLoader($this->db);
+        $fixturesLoader = new FixturesLoader();
         $fixturesLoader->loadPostFixtures($jsonData);
     }
 }

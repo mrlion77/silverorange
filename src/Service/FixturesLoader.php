@@ -2,13 +2,18 @@
 
 namespace silverorange\DevTest\Service;
 
+use silverorange\DevTest\Config;
+use silverorange\DevTest\Database;
+
 class FixturesLoader
 {
     protected \PDO $db;
 
-    public function __construct(\PDO $db)
+    public function __construct()
     {
-        $this->db = $db;
+        $config = new Config();
+        $this->db = (new Database($config->dsn, $config->username, $config->password))->getConnection();
+        $this->db->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
     }
 
     public function loadPostFixtures(array $jsonData): void

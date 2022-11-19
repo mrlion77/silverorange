@@ -11,6 +11,7 @@ class Checkout extends Controller
     {
         $context = new Context();
         $context->title = 'Checkout';
+
         return $context;
     }
 

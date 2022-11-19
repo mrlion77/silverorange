@@ -7,20 +7,12 @@ use silverorange\DevTest\Template;
 
 abstract class Controller
 {
-    protected \PDO $db;
     protected array $params = [];
 
-    public function __construct(\PDO $db, array $params)
+    public function __construct(array $params)
     {
-        $this->setDatabase($db)->setParams($params);
+        $this->setParams($params);
         $this->loadData();
-    }
-
-    public function setDatabase(\PDO $db): self
-    {
-        $this->db = $db;
-
-        return $this;
     }
 
     public function setParams(array $params): self
